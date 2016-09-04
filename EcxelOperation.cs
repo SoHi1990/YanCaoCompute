@@ -101,7 +101,8 @@ namespace WindowsFormsApplication1
             {
                 computerResult = new ResultCount();
             }
-            else {
+            else
+            {
                 computerResult = new ResultDivision();
             }
             DataTable resultTable = computerResult.GetResult(table, this.resultTable, range);
@@ -111,36 +112,67 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// 导出excel
         /// </summary>
-        public void exportExcel()
+        public void exportExcel(bool isSum,string numInterval)
         {
             readExcel();
             HSSFWorkbook wk = new HSSFWorkbook();
-            string[] priceRange = new string[] { "50","100"};
+            string[] priceRange = numInterval.Split(';');
             foreach (string range in priceRange)
             {
                 ISheet sheet = wk.CreateSheet(range);
                 //第一行写价格
-                IRow priceRow = sheet.CreateRow(1);
-                //第二行写次数
-                IRow countRow = sheet.CreateRow(2);
+                IRow priceRow = sheet.CreateRow(0);
                 DataTable resultTable = this.getData(Convert.ToDecimal(range));
-                for (int i = 1; i < resultTable.Columns.Count; i++)
+                if (isSum)
                 {
-                    ICell pricecell = priceRow.CreateCell(i - 1);  //在第一行中创建单元格
-                    pricecell.SetCellValue(resultTable.Columns[i].ToString());//循环往第一行的单元格中添加数据
-                    Decimal sum = 0;
+                    //第二行写次数
+                    IRow countRow = sheet.CreateRow(1);
+                    for (int i = 1; i < resultTable.Columns.Count; i++)
+                    {
+                        ICell pricecell = priceRow.CreateCell(i-1);  //在第一行中创建单元格
+                        pricecell.SetCellValue(resultTable.Columns[i].ToString());//循环往第一行的单元格中添加数据
+                        Decimal sum = 0;
+                        for (int j = 0; j < resultTable.Rows.Count; j++)
+                        {
+                            sum += Convert.ToDecimal(resultTable.Rows[j][i]);
+                        }
+                        ICell countcell = countRow.CreateCell(i - 1);  //在第二行中创建单元格
+                        countcell.SetCellValue(sum.ToString());//循环往第二行的单元格中添加数据
+                    }
+                }
+                else
+                {
                     for (int j = 0; j < resultTable.Rows.Count; j++)
                     {
-                        sum += Convert.ToDecimal(resultTable.Rows[j][i]);
+                        IRow resultRow = sheet.CreateRow(j);
+                        for (int i = 1; i < resultTable.Columns.Count; i++)
+                        {
+                            if (j == 0)
+                            {
+                                ICell pricecell = priceRow.CreateCell(i);  //在第一行中创建单元格
+                                pricecell.SetCellValue(resultTable.Columns[i].ToString());//循环往第一行的单元格中添加数据
+                            }
+                            else
+                            {
+                                Decimal val = Convert.ToDecimal(resultTable.Rows[j][i-1]);
+                                resultRow.CreateCell(i - 1).SetCellValue(val.ToString());
+                            }
+                        }
                     }
-                    ICell countcell = countRow.CreateCell(i - 1);  //在第二行中创建单元格
-                    countcell.SetCellValue(sum.ToString());//循环往第二行的单元格中添加数据
                 }
             }
-            using (FileStream fs = File.OpenWrite(resultPath))
+            try
             {
-                wk.Write(fs);   //向打开的这个xls文件中写入mySheet表并保存。
-                MessageBox.Show("提示：创建成功！");
+                using (FileStream fs = File.OpenWrite(resultPath))
+                {
+                    wk.Write(fs);   //向打开的这个xls文件中写入mySheet表并保存。
+                    MessageBox.Show("提示：创建成功！");
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("请先关闭打开的excel");
             }
         }
     }

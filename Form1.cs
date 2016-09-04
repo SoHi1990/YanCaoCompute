@@ -34,14 +34,17 @@ namespace WindowsFormsApplication1
             string caculateType = "";
             if (rad_caculate1.Checked)
             { caculateType = "1"; }
-            else { caculateType = "2"; }
+            else
+            { caculateType = "2"; }
             EcxelOperation eo = new EcxelOperation(caculateType,txt_source.Text,txt_result.Text);
-            eo.exportExcel();
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
+            try
+            {
+                eo.exportExcel(!rad_caculate3.Checked, txt_numInterval.Text);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            } 
         }
     }
 }

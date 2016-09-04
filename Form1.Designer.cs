@@ -35,11 +35,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_result = new System.Windows.Forms.TextBox();
+            this.rad_caculate3 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_numInterval = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(164, 250);
+            this.button1.Location = new System.Drawing.Point(163, 288);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 42);
             this.button1.TabIndex = 0;
@@ -51,29 +56,28 @@
             // 
             this.rad_caculate1.AutoSize = true;
             this.rad_caculate1.Checked = true;
-            this.rad_caculate1.Location = new System.Drawing.Point(64, 46);
+            this.rad_caculate1.Location = new System.Drawing.Point(121, 41);
             this.rad_caculate1.Name = "rad_caculate1";
-            this.rad_caculate1.Size = new System.Drawing.Size(126, 19);
+            this.rad_caculate1.Size = new System.Drawing.Size(58, 19);
             this.rad_caculate1.TabIndex = 1;
             this.rad_caculate1.TabStop = true;
-            this.rad_caculate1.Text = "算法一（加1）";
+            this.rad_caculate1.Text = "汇总";
             this.rad_caculate1.UseVisualStyleBackColor = true;
             // 
             // rad_caculate2
             // 
             this.rad_caculate2.AutoSize = true;
-            this.rad_caculate2.Location = new System.Drawing.Point(229, 46);
+            this.rad_caculate2.Location = new System.Drawing.Point(121, 83);
             this.rad_caculate2.Name = "rad_caculate2";
-            this.rad_caculate2.Size = new System.Drawing.Size(133, 19);
+            this.rad_caculate2.Size = new System.Drawing.Size(58, 19);
             this.rad_caculate2.TabIndex = 2;
             this.rad_caculate2.TabStop = true;
-            this.rad_caculate2.Text = "算法二（求商）";
+            this.rad_caculate2.Text = "汇总";
             this.rad_caculate2.UseVisualStyleBackColor = true;
-            this.rad_caculate2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // txt_source
             // 
-            this.txt_source.Location = new System.Drawing.Point(184, 120);
+            this.txt_source.Location = new System.Drawing.Point(182, 169);
             this.txt_source.Name = "txt_source";
             this.txt_source.Size = new System.Drawing.Size(236, 25);
             this.txt_source.TabIndex = 3;
@@ -82,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 123);
+            this.label1.Location = new System.Drawing.Point(47, 172);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 4;
@@ -91,7 +95,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 193);
+            this.label2.Location = new System.Drawing.Point(54, 219);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 15);
             this.label2.TabIndex = 5;
@@ -99,22 +103,73 @@
             // 
             // txt_result
             // 
-            this.txt_result.Location = new System.Drawing.Point(184, 186);
+            this.txt_result.Location = new System.Drawing.Point(184, 212);
             this.txt_result.Name = "txt_result";
             this.txt_result.Size = new System.Drawing.Size(236, 25);
             this.txt_result.TabIndex = 6;
             this.txt_result.Text = "D:/123.xls";
             // 
+            // rad_caculate3
+            // 
+            this.rad_caculate3.AutoSize = true;
+            this.rad_caculate3.Location = new System.Drawing.Point(260, 83);
+            this.rad_caculate3.Name = "rad_caculate3";
+            this.rad_caculate3.Size = new System.Drawing.Size(58, 19);
+            this.rad_caculate3.TabIndex = 3;
+            this.rad_caculate3.TabStop = true;
+            this.rad_caculate3.Text = "明细";
+            this.rad_caculate3.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(49, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "计数：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(47, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "求商：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(49, 132);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 15);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "计算范围：";
+            // 
+            // txt_numInterval
+            // 
+            this.txt_numInterval.Location = new System.Drawing.Point(182, 129);
+            this.txt_numInterval.Name = "txt_numInterval";
+            this.txt_numInterval.Size = new System.Drawing.Size(236, 25);
+            this.txt_numInterval.TabIndex = 3;
+            this.txt_numInterval.Text = "50;100";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 304);
+            this.ClientSize = new System.Drawing.Size(454, 383);
             this.Controls.Add(this.txt_result);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.txt_numInterval);
             this.Controls.Add(this.txt_source);
             this.Controls.Add(this.rad_caculate2);
+            this.Controls.Add(this.rad_caculate3);
             this.Controls.Add(this.rad_caculate1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -133,6 +188,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_result;
+        private System.Windows.Forms.RadioButton rad_caculate3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txt_numInterval;
     }
 }
 
